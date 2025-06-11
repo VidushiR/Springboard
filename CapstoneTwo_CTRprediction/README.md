@@ -15,6 +15,7 @@ The objective is to predict the likelihood that a user clicks on an online adver
 
 ## Repository Structure
 
+```
 CapstoneTwo_CTRprediction/
 │
 ├── data/
@@ -43,7 +44,7 @@ CapstoneTwo_CTRprediction/
 ├── requirements.txt
 └── .gitignore
 
-
+```
 
 ---
 
