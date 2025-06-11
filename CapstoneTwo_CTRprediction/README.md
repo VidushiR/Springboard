@@ -1,131 +1,149 @@
-# Click-Through Rate (CTR) Prediction Project
+# Capstone Two — Click-Through Rate (CTR) Prediction Project
 
-Online advertising is one of the largest revenue streams for many companies. Accurately predicting whether a user will click on an ad is critical for optimizing ad placement, improving customer experience, and maximizing revenue. In this project, I developed a machine learning pipeline to predict click-through rates based on user, ad, and contextual features.
-
----
-
-## 1. Data
-
-The dataset simulates real-world ad interaction data, containing millions of ad impressions with click outcomes. It includes features such as:
-
-- User demographics
-- Ad features (campaign, ad ID, creative ID, etc.)
-- Device information (device type, platform)
-- Contextual features (hour, site, app, etc.)
-
-The dataset was obtained from a Kaggle CTR prediction competition.
-### Data Sources:
-
-- [Kaggle Dataset (Example Link)](https://www.kaggle.com/)
-- [Project Data Dictionary (optional link if you build one)]
+This project was completed as part of the Springboard Data Science Career Track.  
+The objective is to predict the likelihood that a user clicks on an online advertisement, using machine learning models trained on simulated real-world ad interaction data.
 
 ---
 
-## 2. Methodology
+##  Problem Overview
 
-The project follows a full end-to-end machine learning pipeline:
-
-### Data Preprocessing
-
-- Handled missing values and inconsistent entries
-- Encoded categorical variables using Label Encoding and One-Hot Encoding
-- Scaled numerical features where applicable
-- Addressed data imbalance with techniques like undersampling, oversampling, or class weights
-
-### Exploratory Data Analysis (EDA)
-
-- Investigated click distribution and feature correlations
-- Visualized relationships between categorical features and CTR
-- Identified key features such as time of day, device type, and ad ID clusters
-
-### Feature Engineering
-
-- Extracted new features from timestamps (hour of day, day of week)
-- Grouped ad features (ad ID frequency, campaign-level grouping)
-- Created interaction features
+- **Problem Type**: Binary Classification (CTR Prediction)
+- **Target Variable**: Click (1 if user clicked, 0 otherwise)
+- **Business Goal**: Optimize online ad placements to reduce wasted impressions and increase ad engagement.
 
 ---
 
-## 3. Modeling & Machine Learning
+## Repository Structure
 
-I tested multiple machine learning models to predict click-through probability:
+CapstoneTwo_CTRprediction/
+│
+├── data/
+│ └── processed/
+│ ├── cleaned_ctr_prediction_data.csv
+│ ├── cleaned_no_outliers.csv
+│ ├── capped_outliers.csv
+│ ├── X_train.csv
+│ ├── X_test.csv
+│ ├── y_train.csv
+│ └── y_test.csv
+│
+├── notebooks/
+│ ├── data_wrangling.ipynb
+│ ├── EDAforCTRPrediction.ipynb
+│ ├── CTR-Pre-processingAndTrainingDataDevelopment.ipynb
+│ └── CTRPredictionModeling.ipynb
+│
+├── reports/
+│ └── model_evaluation_summary.csv
+│
+├── models/
+├── scripts/
+├── config/
+├── README.md
+├── requirements.txt
+└── .gitignore
+
+
+
+---
+
+## 1. Dataset
+
+- Contains user, ad, and contextual features.
+- Includes ad impression logs, user demographics, ad campaign features, and time-based contextual variables.
+- Raw data cleaned and preprocessed into multiple versions: capped outliers, cleaned without outliers, and fully processed train/test sets.
+
+---
+
+## 2. Data Preprocessing
+
+- Missing values handled.
+- Outlier detection and capping performed.
+- Categorical variables encoded.
+- Numerical features scaled.
+- Data split into training and testing sets.
+
+---
+
+## 3. Exploratory Data Analysis (EDA)
+
+- Visualized CTR distribution across features such as:
+  - Campaign IDs
+  - Ad positions
+  - Device types
+  - Time of day
+- Identified key feature correlations influencing click behavior.
+
+---
+
+## 4. Modeling & Machine Learning
+
+Multiple models evaluated:
 
 - Logistic Regression (Baseline)
-- Decision Tree Classifier
-- Random Forest Classifier
+- K-Nearest Neighbors (KNN)
+- Naive Bayes
+- Support Vector Machine (SVM)
 - Gradient Boosting (XGBoost, LightGBM)
-- Neural Networks (optional)
 
 ### Evaluation Metrics:
-
-Since this is a binary classification problem, I used:
 
 - Accuracy
 - Precision
 - Recall
-- F1-Score
+- F1 Score
 - ROC-AUC
 - Log Loss
 
----
-
-## 4. Model Selection
-
-The best-performing model was **XGBoost Classifier** with optimized hyperparameters using GridSearchCV.
-
-- XGBoost handled large feature space and imbalance better than simpler models.
-- ROC-AUC: ~0.80 (example value)
-- Log Loss: ~0.40 (example value)
+Final model evaluation results are stored in:  
+[`model_evaluation_summary.csv`](reports/model_evaluation_summary.csv)
 
 ---
 
-## 5. Cold Start & Business Considerations
+## 5. Results & Key Takeaways
 
-CTR prediction models face challenges like:
-
-- Cold start (new ads, new users)
-- Data imbalance (far more impressions than clicks)
-- High importance of minimizing false positives to avoid wasting ad spend
-
-For production deployment, models would need real-time retraining, online learning capabilities, and further explainability modules.
+- Gradient Boosting models (XGBoost, LightGBM) provided the best performance.
+- Outlier removal and strong feature engineering improved predictive power.
+- The final models generalized well across test data after hyperparameter tuning.
 
 ---
 
-## 6. Future Improvements
+## 6. Challenges & Business Considerations
 
-- Incorporate time-decay features to capture user recency behavior
-- Deploy model with real-time inference API
-- Build monitoring dashboards for ongoing model performance
-- Use deep learning models for capturing high-dimensional interactions
-
----
-
-## 7. Example Prediction Flow
-
-- Input: User + Ad + Context
-- Model outputs: CTR probability (e.g. 0.067)
-- Business logic decides whether to serve ad based on predicted CTR
+- Data imbalance between click and no-click records.
+- Cold start problem for new users and ads.
+- Importance of minimizing false positives to optimize ad spend.
+- Model interpretability and deployment considerations for real-world business use.
 
 ---
 
-## 8. Credits
+## 7. Future Work
+
+- Apply additional deep learning models.
+- Deploy models with real-time scoring APIs.
+- Add advanced feature interactions and time-decay features.
+- Implement online learning for continuously updated models.
+
+---
+
+## 8. Tools & Technologies
+
+- Python 3.x
+- pandas, numpy
+- scikit-learn
+- matplotlib, seaborn
+- XGBoost, LightGBM
+- Jupyter Notebook
+
+---
+
+## 9. Acknowledgements
 
 - Springboard Data Science Career Track
 - Kaggle community datasets
-- Mentors and reviewers who provided valuable feedback
-- Special thanks to my mentor for guidance on modeling and storytelling
+- Mentors and advisors for their valuable feedback
 
 ---
 
-## 9. Repository Structure
+*This project demonstrates my ability to apply end-to-end machine learning pipelines for real-world business problems using both statistical learning and modern ML techniques.*
 
-CTR_Prediction_Project/
-│
-├── data/
-├── notebooks/
-├── models/
-├── scripts/
-├── reports/
-├── config/
-├── requirements.txt
-└── README.md
