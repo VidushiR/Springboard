@@ -1,0 +1,27 @@
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+*.so
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore model files
+*.h5
+*.pkl
+*.joblib
+
+# Ignore virtual environments
+venv/
+.env/
+
+# Ignore large data files (optional for safety)
+*.csv
+
+# But keep processed datasets (important for your project)
+!data/processed/*.csv
+
+# OS specific
+.DS_Store
+Thumbs.db
+
