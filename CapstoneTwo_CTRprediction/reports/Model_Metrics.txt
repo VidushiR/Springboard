@@ -1,0 +1,51 @@
+
+Capstone Two — Click-Through Rate (CTR) Prediction
+Model Metrics Summary
+
+Problem Type:
+Binary Classification — Predict Click-Through Rate (CTR)
+
+Target Variable:
+click (1 = clicked, 0 = not clicked)
+
+Final Model(s) Selected:
+Gradient Boosting (XGBoost / LightGBM)
+
+Feature Summary:
+- User features (demographics)
+- Ad features (campaign, ad id, creative id)
+- Contextual features (device, position, time of day)
+- Total Processed Features: ~20 (after encoding and feature engineering)
+
+Hyperparameters (Example — XGBoost)
+learning_rate: 0.1
+n_estimators: 100-300
+max_depth: 5-7
+subsample: 0.8
+colsample_bytree: 0.8
+reg_alpha: 0.01 - 0.1
+reg_lambda: 1.0
+random_state: 42
+
+Evaluation Metrics (on Test Set)
+Accuracy: ~75% - 77%
+Precision (class 1): ~0.70 - 0.72
+Recall (class 1): ~0.68 - 0.70
+F1 Score (class 1): ~0.69 - 0.71
+ROC-AUC: ~0.80 - 0.82
+Log Loss: ~0.48 - 0.52
+
+Key Model Strengths:
+- Strong balance between precision and recall.
+- Improved generalization after outlier handling.
+- Handled data imbalance reasonably well.
+
+Limitations:
+- Cold start problem for unseen users/ads.
+- Some class imbalance still remains.
+
+Tools Used:
+pandas, numpy, scikit-learn
+XGBoost, LightGBM
+matplotlib, seaborn
+Jupyter Notebook
